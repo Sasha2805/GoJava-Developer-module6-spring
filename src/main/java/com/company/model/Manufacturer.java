@@ -2,28 +2,28 @@ package com.company.model;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "manufacturer")
 public class Manufacturer {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(name = "id", unique = true)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Product> products;
+    private Set<Product> products;
 
     public Manufacturer() {
     }
 
-    public Manufacturer(String name, List<Product> products) {
+    public Manufacturer(String name, Set<Product> products) {
         this.name = name;
         this.products = products;
     }
@@ -44,11 +44,11 @@ public class Manufacturer {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

@@ -4,28 +4,28 @@ USE spring_hw;
 
 # Creating a manufacturer table
 CREATE TABLE IF NOT EXISTS `spring_hw`.`manufacturer`(
-  `id` VARCHAR(36) NOT NULL PRIMARY KEY,
+  `id` BINARY(16) NOT NULL PRIMARY KEY,
   `name` VARCHAR(255) NOT NULL
 );
 
 # Creating a product table
 CREATE TABLE IF NOT EXISTS `spring_hw`.`product`(
-  `id` VARCHAR(36) NOT NULL PRIMARY KEY,
+  `id` BINARY(16) NOT NULL PRIMARY KEY,
   `name` VARCHAR(255) NOT NULL,
   `cost` DECIMAL(10, 2),
-  `manufacturer_id` VARCHAR(36) NOT NULL,
+  `manufacturer_id` BINARY(16) NOT NULL,
   FOREIGN KEY(`manufacturer_id`) REFERENCES manufacturer (`id`)
 );
 
 # Creating a role table
 CREATE TABLE IF NOT EXISTS `spring_hw`.`role`(
-  `id` VARCHAR(36) NOT NULL PRIMARY KEY,
+  `id` BINARY(16) NOT NULL PRIMARY KEY,
   `name` VARCHAR(255) NOT NULL
 );
 
 # Creating a user table
 CREATE TABLE IF NOT EXISTS `spring_hw`.`user`(
-  `id` VARCHAR(36) NOT NULL PRIMARY KEY,
+  `id` BINARY(16) NOT NULL PRIMARY KEY,
   `email` VARCHAR(255),
   `password` VARCHAR(255) NOT NULL,
   `firstName` VARCHAR(255) NOT NULL,
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `spring_hw`.`user`(
 
 # Creating a user_roles table
 CREATE TABLE IF NOT EXISTS `spring_hw`.`user_roles`(
-  `user_id` VARCHAR(36) NOT NULL,
-  `role_id` VARCHAR(36) NOT NULL,
+  `user_id` BINARY(16) NOT NULL,
+  `role_id` BINARY(16) NOT NULL,
   FOREIGN KEY(`user_id`) REFERENCES `spring_hw`.`user` (`id`),
   FOREIGN KEY(`role_id`) REFERENCES `spring_hw`.`role` (`id`),
   UNIQUE (`user_id`, `role_id`)

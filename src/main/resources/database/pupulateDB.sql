@@ -1,37 +1,55 @@
 USE spring_hw;
 
 # Creating new records in table manufacturer
-INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Apple');
-INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Xiaomi');
-INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'HP');
-INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Asus');
-INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Samsung');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'Apple');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'Xiaomi');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'HP');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'Asus');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'Samsung');
+
+# Getting manufacturers id
+SELECT @apple_id := id FROM manufacturer WHERE name = 'Apple';
+SELECT @xiaomi_id := id FROM manufacturer WHERE name = 'Xiaomi';
+SELECT @hp_id := id FROM manufacturer WHERE name = 'HP';
+SELECT @asus_id := id FROM manufacturer WHERE name = 'Asus';
+SELECT @samsung_id := id FROM manufacturer WHERE name = 'Samsung';
 
 # Creating new records in table product
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Iphone X', 1225, '575e7644-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'iPad 7', 556, '575e7644-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Xiaomi Redmi 5 plus', 185, '5766efdd-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Xiaomi Mi Mix 2', 495, '5766efdd-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Loptop HP ProBook 430 G4', 850, '576df115-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Asus VivoBook 15 X510UQ ', 6000, '5772d603-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Samsung Galaxy S8 64GB Midnight Black', 1020, '577c4b71-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Samsung Galaxy A8 2018 32GB Orchid Gray', 420.84, '577c4b71-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Iphone X', 1225, @apple_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'iPad 7', 556, @apple_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Xiaomi Redmi 5 plus', 185, @xiaomi_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Xiaomi Mi Mix 2', 495, @xiaomi_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Loptop HP ProBook 430 G4', 850, @hp_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Asus VivoBook 15 X510UQ ', 6000,  @asus_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Samsung Galaxy S8 64GB Midnight Black', 1020, @samsung_id);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Samsung Galaxy A8 2018 32GB Orchid Gray', 420.84, @samsung_id);
 
 # Creating new records in table role
-INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (uuid(), 'ADMIN');
-INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (uuid(), 'USER');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'ADMIN');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'USER');
+
+# Getting roles id
+SELECT @admin_id := id FROM role WHERE name = 'ADMIN';
+SELECT @user_id := id FROM role WHERE name = 'USER';
 
 # Creating new records in table user
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'sarahJones@gmail.com', 'sarah123', 'Sarah', 'Jones');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'danielBrown@gmail.com', 'daniel123', 'Daniel', 'Brown');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'sarahJones@gmail.com', 'sarah123', 'Sarah', 'Jones');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'danielBrown@gmail.com', 'daniel123', 'Daniel', 'Brown');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith');
+
+# Getting users id
+SELECT @johnSmith_id := id FROM user WHERE email = 'johnSmith@gmail.com';
+SELECT @sarahJones_id := id FROM user WHERE email = 'sarahJones@gmail.com';
+SELECT @oliviaEvans_id := id FROM user WHERE email = 'oliviaEvans@gmail.com';
+SELECT @danielBrown_id := id FROM user WHERE email = 'danielBrown@gmail.com';
+SELECT @danielSmith_id := id FROM user WHERE email = 'danielSmith@gmail.com';
 
 # Creating new records in table user_roles
-INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2648fb8e-3da2-11e8-9ec2-0024542b49b4', 'd1fe5cd2-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2651f82c-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2657fd81-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('265e0c70-3da2-11e8-9ec2-0024542b49b4', 'd1fe5cd2-3da1-11e8-9ec2-0024542b49b4');
-INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2663daac-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES (@johnSmith_id, @admin_id);
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES (@sarahJones_id, @user_id);
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES (@oliviaEvans_id, @user_id);
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES (@danielBrown_id, @admin_id);
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES (@danielSmith_id, @user_id);
 
