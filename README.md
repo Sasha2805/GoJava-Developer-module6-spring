@@ -11,16 +11,16 @@ String name;
 BigDecimal price;
 Manufacturer manufacturer;
 
-Manufacturer
+Manufacturer:
 UUID id;
 String name;
 Set<Product> products;
 
-Role
+Role:
 UUID id;
 String name;
 
-User
+User:
 UUID id;
 String email;
 String password;
