@@ -1,29 +1,37 @@
-USE shop;
+USE spring_hw;
 
 # Creating new records in table manufacturer
-INSERT INTO `shop`.`manufacturer` (`id`, `name`) VALUES (1, 'Apple');
-INSERT INTO `shop`.`manufacturer` (`id`, `name`) VALUES (2, 'Xiaomi');
-INSERT INTO `shop`.`manufacturer` (`id`, `name`) VALUES (3, 'HP');
-INSERT INTO `shop`.`manufacturer` (`id`, `name`) VALUES (4, 'Asus');
-INSERT INTO `shop`.`manufacturer` (`id`, `name`) VALUES (5, 'Samsung');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Apple');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Xiaomi');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'HP');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Asus');
+INSERT INTO `spring_hw`.`manufacturer` (`id`, `name`) VALUES (uuid(), 'Samsung');
 
 # Creating new records in table product
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (1, 'Iphone X', 1225, 1);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (2, 'iPad 7', 556, 1);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (3, 'Xiaomi Redmi 5 plus', 185, 2);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (4, 'Xiaomi Mi Mix 2', 495, 2);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (5, 'Loptop HP ProBook 430 G4', 850, 3);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (6, 'Asus VivoBook 15 X510UQ ', 6000, 4);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (7, 'Samsung Galaxy S8 64GB Midnight Black', 1020, 5);
-INSERT INTO `shop`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (8, 'Samsung Galaxy A8 2018 32GB Orchid Gray', 420.84, 5);
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Iphone X', 1225, '575e7644-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'iPad 7', 556, '575e7644-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Xiaomi Redmi 5 plus', 185, '5766efdd-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Xiaomi Mi Mix 2', 495, '5766efdd-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Loptop HP ProBook 430 G4', 850, '576df115-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Asus VivoBook 15 X510UQ ', 6000, '5772d603-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Samsung Galaxy S8 64GB Midnight Black', 1020, '577c4b71-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (uuid(), 'Samsung Galaxy A8 2018 32GB Orchid Gray', 420.84, '577c4b71-3da1-11e8-9ec2-0024542b49b4');
 
 # Creating new records in table role
-INSERT INTO `shop`.`role` (`id`, `name`) VALUES (1, 'ADMIN');
-INSERT INTO `shop`.`role` (`id`, `name`) VALUES (2, 'USER');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (uuid(), 'ADMIN');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (uuid(), 'USER');
 
 # Creating new records in table user
-INSERT INTO `shop`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `role_id`) VALUES (1, 'johnSmith@gmail.com', 'john123', 'John', 'Smith', 1);
-INSERT INTO `shop`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `role_id`) VALUES (2, 'sarahJones@gmail.com', 'sarah123', 'Sarah', 'Jones', 2);
-INSERT INTO `shop`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `role_id`) VALUES (3, 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans', 2);
-INSERT INTO `shop`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `role_id`) VALUES (4, 'danielBrown@gmail.com', 'daniel123', 'Daniel', 'Brown', 2);
-INSERT INTO `shop`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `role_id`) VALUES (5, 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith', 1);
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'sarahJones@gmail.com', 'sarah123', 'Sarah', 'Jones');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'danielBrown@gmail.com', 'daniel123', 'Daniel', 'Brown');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (uuid(), 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith');
+
+# Creating new records in table user_roles
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2648fb8e-3da2-11e8-9ec2-0024542b49b4', 'd1fe5cd2-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2651f82c-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2657fd81-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('265e0c70-3da2-11e8-9ec2-0024542b49b4', 'd1fe5cd2-3da1-11e8-9ec2-0024542b49b4');
+INSERT INTO `spring_hw`.`user_roles` (`user_id`, `role_id`) VALUES ('2663daac-3da2-11e8-9ec2-0024542b49b4', 'd2047695-3da1-11e8-9ec2-0024542b49b4');
+
