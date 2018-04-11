@@ -4,22 +4,22 @@
 1. Выполнять регистрацию пользоваталей
 2. Выполнять авторизацию пользователей
 3. Выполнять CRUD операции над следующими объектами:
-==========================
+
 Product:
 UUID id;
 String name;
 BigDecimal price;
 Manufacturer manufacturer;
-==========================
+
 Manufacturer
 UUID id;
 String name;
 Set<Product> products;
-==========================
+
 Role
 UUID id;
 String name;
-==========================
+
 User
 UUID id;
 String email;
@@ -27,7 +27,6 @@ String password;
 String firstName;
 String lastName;
 Set<Role> roles;
-==========================
  
 Роли пользователей:
 1. Admin - имеет возможность выполнять все CRUD операции
