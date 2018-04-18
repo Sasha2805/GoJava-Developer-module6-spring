@@ -1,5 +1,5 @@
 # Creating schema
-CREATE SCHEMA spring_hw DEFAULT CHARACTER SET utf8mb4;
+CREATE SCHEMA `spring_hw` DEFAULT CHARACTER SET utf8mb4;
 USE spring_hw;
 
 # Creating a manufacturer table
