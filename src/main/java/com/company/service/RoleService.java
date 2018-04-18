@@ -1,4 +1,7 @@
 package com.company.service;
 
-public class RoleService {
+import com.company.model.Role;
+import java.util.UUID;
+
+public interface RoleService extends ModelService<Role, UUID>{
 }

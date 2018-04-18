@@ -1,4 +1,15 @@
 package com.company.service;
 
-public class ModelService {
+import java.util.List;
+
+public interface ModelService <T, ID>{
+    void save(T t);
+
+    T findById(ID id);
+
+    List<T> findAll();
+
+    void update(T t);
+
+    void deleteById(ID id);
 }

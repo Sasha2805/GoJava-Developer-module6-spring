@@ -1,4 +1,8 @@
 package com.company.service;
 
-public class ProductService {
+import com.company.model.Product;
+import java.util.UUID;
+
+public interface ProductService extends ModelService<Product, UUID> {
+    Product findByName(String name);
 }
