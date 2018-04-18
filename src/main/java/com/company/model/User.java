@@ -112,7 +112,6 @@ public class User {
                 ", confirmPassword='" + confirmPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", roles=" + roles +
                 '}';
     }
 }
