@@ -1,4 +1,4 @@
 package com.company.controller;
 
-public class DefaultController {
+public class RoleController {
 }
