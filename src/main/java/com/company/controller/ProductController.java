@@ -1,7 +1,7 @@
 package com.company.controller;
 
 import com.company.model.Product;
-import com.company.service.ProductService;
+import com.company.service.impl.ProductServiceImpl;
 import com.company.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @Controller
 public class ProductController {
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Autowired
     private ProductValidator productValidator;
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping("/new-product")
-    private String save(@ModelAttribute("productForm") @Valid Product product, BindingResult result, Model model) {
+    private String save(@ModelAttribute("product") @Valid Product product, BindingResult result, Model model) {
         return getProductInfo(product, result, model, false);
     }
 
@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @PostMapping("/edit-product-{id}")
-    private String saveEdit(@ModelAttribute("productForm") Product product,
+    private String saveEdit(@ModelAttribute("product") @Valid Product product,
                                    BindingResult result, Model model) {
         return getProductInfo(product, result, model, true);
     }
@@ -73,7 +73,7 @@ public class ProductController {
     }
 
     private String addDataToProductForm(Model model, Product product) {
-        model.addAttribute("productForm", product);
+        model.addAttribute("product", product);
         model.addAttribute("loggedUser", MainController.getPrincipal());
         return "product";
     }

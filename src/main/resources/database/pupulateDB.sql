@@ -33,11 +33,11 @@ SELECT @admin_id := id FROM role WHERE name = 'ADMIN';
 SELECT @user_id := id FROM role WHERE name = 'USER';
 
 # Creating new records in table user
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'sarahJones@gmail.com', 'sarah123', 'Sarah', 'Jones');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'danielBrown@gmail.com', 'daniel123', 'Daniel', 'Brown');
-INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES (unhex(replace(uuid(), '-', '')), 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'sarahJones@gmail.com', '$2a$10$DZN7xi1GdAU6j2LTvYzhE.B8a.00Y7/KCr9u2BqQpiacNnjXDG8e6', 'Sarah', 'Jones'); /*password-sarah123*/
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'oliviaEvans@gmail.com', 'olivia123', 'Olivia', 'Evans');
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'danielBrown@gmail.com', '$2a$10$wfNkudEGNVg7igQap95zhe07cC49OTFy4RUEr5BCp4av2xEamTie6', 'Daniel', 'Brown');  /*password-daniel123*/
+INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'danielSmith@gmail.com', 'daniel123', 'Daniel', 'Smith');
 
 # Getting users id
 SELECT @johnSmith_id := id FROM user WHERE email = 'johnSmith@gmail.com';

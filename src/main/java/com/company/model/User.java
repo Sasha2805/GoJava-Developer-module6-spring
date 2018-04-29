@@ -23,10 +23,10 @@ public class User {
     @Transient
     private String confirmPassword;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

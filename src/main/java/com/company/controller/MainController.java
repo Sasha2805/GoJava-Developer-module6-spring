@@ -1,5 +1,7 @@
 package com.company.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,10 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @GetMapping(value = {"/", "/index"})
     public String getMainPage(){
-        return "/WEB-INF/jsp/index.jsp";
+        return "index";
     }
 
     public static String getPrincipal() {
-        return null;
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 }

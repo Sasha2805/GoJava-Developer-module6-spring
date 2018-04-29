@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `spring_hw`.`user`(
   `id` BINARY(16) NOT NULL PRIMARY KEY,
   `email` VARCHAR(255),
   `password` VARCHAR(255) NOT NULL,
-  `firstName` VARCHAR(255) NOT NULL,
-  `lastName` VARCHAR(255) NOT NULL
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL
 );
 
 # Creating a user_roles table

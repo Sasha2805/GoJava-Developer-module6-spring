@@ -9,33 +9,43 @@
 <head>
     <meta content="text/html; charset=UTF-8">
     <title>All manufacturers</title>
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <div class="wrapper">
+    <%@include file="/WEB-INF/jsp/secure/authHeader.jsp" %>
     <div class="container">
+        <h3 class="page-title">List of all manufacturers</h3>
         <div class="block block-table">
-            <h4>List of all manufacturers</h4>
             <div class="table-container">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="manufacturer" items="${manufacturers}">
                         <tr>
                             <td><c:out value="${manufacturer.name}"/></td>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <td><a href="${contextPath}/edit-manufacturer-${manufacturer.id}">Edit</a></td>
+                                <td><a href="${contextPath}/delete-manufacturer-${manufacturer.id}">Delete</a></td>
+                            </sec:authorize>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="btn-block">
+            <a href="${contextPath}/new-manufacturer" class="btn btn-g">Add manufacturer</a>
         </div>
     </div>
 </div>

@@ -1,48 +1,139 @@
 body {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #eee;
+    background: url("/resources/images/laptop.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+.block-presentation {
+    margin: 30px 235px 20px 235px;
+    padding: 0 15px;
 }
 
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-    margin-bottom: 10px;
+.block-presentation h1, .block-presentation p, .block-presentation h3, .page-title {
+    color: #ffffff;
+    text-align: center;
 }
 
-.form-signin .checkbox {
-    font-weight: normal;
-}
-
-.form-signin .form-control {
-    position: relative;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 10px;
+.block-presentation p {
     font-size: 16px;
 }
 
-.form-signin .form-control:focus {
-    z-index: 2;
+.block-lg {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.form-signin input {
-    margin-top: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+.block-form, .action, .error, .action h3, .block-table {
+    background: #ffffff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-opacity: 0.85;
+    opacity: 0.85;
 }
 
-.form-signin button {
-    margin-top: 10px;
+.block-form {
+    margin: 0 350px;
 }
 
-.has-error {
-    color: red
+.block-table {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 0;
+}
+
+.action {
+    width: 275px;
+    font-size: 17px;
+    text-align: center;
+    padding: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.action h3 {
+    color: #080808;
+    background: #7bcc70;
+    margin-top: 0;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.btn-block {
+    text-align: center;
+}
+
+.btn {
+    font-size: 18px;
+    line-height: 1.3333333;
+    color: #ffffff;
+    padding: 5px 50px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.btn-r {
+    background: #ff4d4d;
+}
+
+.btn-r:hover {
+    color: #ffffff;
+    background: #d93033;
+}
+
+.btn-g {
+    background: #7bcc70;
+}
+
+.btn-g:hover {
+    color: #ffffff;
+    background: #63ab62;
+}
+
+.form-container {
+    padding: 10px 40px;
+    text-align: center;
+}
+
+.form-container .form-control {
+    color: #080808;
+    height: 36px;
+    margin-bottom: 10px;
+    -moz-opacity: 0.7;
+    opacity: 0.7;
+}
+
+.form-container .field-name {
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.error {
+    font-size: 16px;
+    background: #7bcc70;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.auth-bar {
+    font-size: 16px;
+    text-align: right;
+    margin: 15px;
+}
+
+.auth-bar span {
+    color: #080808;
+    margin-right: 10px;
+}
+
+.auth-bar .btn-r {
+    padding: 5px 10px;
 }
