@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class UserValidator implements Validator {
-    private static final Pattern patternForName = Pattern.compile("/^[a-z ,.'-]+$/i");
+    private static final Pattern patternForName = Pattern.compile("^[a-zA-Z\\\\s]+");
 
     @Autowired
     private UserService userService;

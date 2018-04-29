@@ -28,16 +28,16 @@
                             <th scope="col">Name</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="manufacturer" items="${manufacturers}">
                         <tr>
                             <td><c:out value="${manufacturer.name}"/></td>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <td><a href="${contextPath}/edit-manufacturer-${manufacturer.id}">Edit</a></td>
-                                <td><a href="${contextPath}/delete-manufacturer-${manufacturer.id}">Delete</a></td>
-                            </sec:authorize>
+                            <td><a href="${contextPath}/edit-manufacturer-${manufacturer.id}">Edit</a></td>
+                            <td><a href="${contextPath}/delete-manufacturer-${manufacturer.id}">Delete</a></td>
+                            <td><a href="${contextPath}/manufacturer-products-${manufacturer.id}">Products</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

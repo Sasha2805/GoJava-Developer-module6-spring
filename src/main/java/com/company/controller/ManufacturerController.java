@@ -1,7 +1,9 @@
 package com.company.controller;
 
 import com.company.model.Manufacturer;
+import com.company.model.Product;
 import com.company.service.impl.ManufacturerServiceImpl;
+import com.company.service.impl.ProductServiceImpl;
 import com.company.validator.ManufacturerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +25,14 @@ public class ManufacturerController {
     @Autowired
     private ManufacturerValidator manufacturerValidator;
 
+    @Autowired
+    private ProductServiceImpl productService;
+
     @GetMapping("/list_manufacturers")
     private String getAll(Model model) {
         List<Manufacturer> manufacturers = manufacturerService.findAll();
         model.addAttribute("manufacturers", manufacturers);
+        model.addAttribute("loggedUser", MainController.getPrincipal());
         return "manufacturer/listManufacturers";
     }
 
@@ -56,13 +62,27 @@ public class ManufacturerController {
     @GetMapping("/delete-manufacturer-{id}")
     public String delete(@PathVariable String id) {
         manufacturerService.deleteById(UUID.fromString(id));
-        return "redirect:manufacturer/listManufacturers";
+        return "redirect:/list_manufacturers";
+    }
+
+    @GetMapping("/manufacturer-products-{id}")
+    public String getProjects(@PathVariable String id, Model model) {
+        Manufacturer manufacturer = manufacturerService.findById(UUID.fromString(id));
+        model.addAttribute("products", manufacturer.getProducts());
+        model.addAttribute("loggedUser", MainController.getPrincipal());
+        return "manufacturer/manufacturerProducts";
+    }
+
+    @GetMapping("/delete-manufacturer-product-{id}")
+    public String deleteProduct(@PathVariable String id) {
+        productService.deleteById(UUID.fromString(id));
+        return "redirect:/list_manufacturers";
     }
 
     private String addDataToManufacturerForm(Model model, Manufacturer manufacturer) {
         model.addAttribute("manufacturer", manufacturer);
         model.addAttribute("loggedUser", MainController.getPrincipal());
-        return "manufacturer";
+        return "manufacturer/manufacturer";
     }
 
     private String getInfo(@ModelAttribute("manufacturer") Manufacturer manufacturer,
@@ -77,7 +97,7 @@ public class ManufacturerController {
             model.addAttribute("manufacturer", manufacturer);
             model.addAttribute("edit", false);
             model.addAttribute("loggedUser", MainController.getPrincipal());
-            return "manufacturer";
+            return "manufacturer/manufacturer";
         }
 
         manufacturerService.save(manufacturer);
