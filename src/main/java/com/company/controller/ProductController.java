@@ -39,7 +39,7 @@ public class ProductController {
     private String create(Model model) {
         Product product = new Product();
         product.setId(UUID.randomUUID());
-        return addDataToProductForm(model, product);
+        return addDataToProductForm(model, product, false);
     }
 
     @PostMapping("/new-product")
@@ -49,7 +49,8 @@ public class ProductController {
 
     @GetMapping("/edit-product-{id}")
     private String edit(@PathVariable String id, Model model) {
-        return addDataToProductForm(model, productService.findById(UUID.fromString(id)));
+        Product product = productService.findById(UUID.fromString(id));
+        return addDataToProductForm(model, product, true);
     }
 
     @PostMapping("/edit-product-{id}")
@@ -71,16 +72,17 @@ public class ProductController {
         }
 
         if (result.hasErrors()) {
-            return addDataToProductForm(model, product);
+            return addDataToProductForm(model, product, false);
         }
 
         productService.save(product);
         return getAll(model);
     }
 
-    private String addDataToProductForm(Model model, Product product) {
-        model.addAttribute("manufacturers", manufacturerService.findAll());
+    private String addDataToProductForm(Model model, Product product, boolean edit) {
         model.addAttribute("product", product);
+        model.addAttribute("manufacturers", manufacturerService.findAll());
+        model.addAttribute("edit", edit);
         model.addAttribute("loggedUser", MainController.getPrincipal());
         return "product/product";
     }

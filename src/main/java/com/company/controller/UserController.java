@@ -31,12 +31,11 @@ public class UserController {
     public String getRegistrationForm(Model model) {
         User user = new User();
         user.setId(UUID.randomUUID());
-        return addDataToRegistrationForm(user, model, false);
+        return addDataToRegistrationForm(model, user, false);
     }
 
     @PostMapping({"/registration", "/new-user"})
     public String getRegistration(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
-        System.out.println(user);
         return getInfo(user, result, model, false);
     }
 
@@ -51,7 +50,7 @@ public class UserController {
     @GetMapping("/edit-user-{id}")
     public String edit(@PathVariable String id, Model model) {
         User user = userService.findById(UUID.fromString(id));
-        return addDataToRegistrationForm(user, model, true);
+        return addDataToRegistrationForm(model, user, true);
     }
 
     @PostMapping("/edit-user-{id}")
@@ -65,7 +64,7 @@ public class UserController {
         return "redirect:user/listUsers";
     }
 
-    private String addDataToRegistrationForm(User user, Model model, boolean edit) {
+    private String addDataToRegistrationForm(Model model, User user, boolean edit) {
         model.addAttribute("user", user);
         model.addAttribute("listRoles", userService.findAllRoles());
         model.addAttribute("edit", edit);
@@ -80,7 +79,7 @@ public class UserController {
         }
 
         if (result.hasErrors()) {
-            return addDataToRegistrationForm(user, model, false);
+            return addDataToRegistrationForm(model, user, false);
         }
 
         userService.save(user);

@@ -39,7 +39,7 @@ public class ManufacturerController {
     private String create(Model model) {
         Manufacturer manufacturer = new Manufacturer();
         manufacturer.setId(UUID.randomUUID());
-        return addDataToManufacturerForm(model, manufacturer);
+        return addDataToManufacturerForm(model, manufacturer, false);
     }
 
     @PostMapping("/new-manufacturer")
@@ -50,7 +50,7 @@ public class ManufacturerController {
     @GetMapping("/edit-manufacturer-{id}")
     private String edit(@PathVariable String id, Model model) {
         Manufacturer manufacturer = manufacturerService.findById(UUID.fromString(id));
-        return addDataToManufacturerForm(model, manufacturer);
+        return addDataToManufacturerForm(model, manufacturer, true);
     }
 
     @PostMapping("/edit-manufacturer-{id}")
@@ -78,8 +78,9 @@ public class ManufacturerController {
         return getProducts(manufacturerId, model);
     }
 
-    private String addDataToManufacturerForm(Model model, Manufacturer manufacturer) {
+    private String addDataToManufacturerForm(Model model, Manufacturer manufacturer, boolean edit) {
         model.addAttribute("manufacturer", manufacturer);
+        model.addAttribute("edit", edit);
         model.addAttribute("loggedUser", MainController.getPrincipal());
         return "manufacturer/manufacturer";
     }
