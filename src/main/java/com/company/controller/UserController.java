@@ -40,7 +40,7 @@ public class UserController {
         return getInfo(user, result, model, false);
     }
 
-    @GetMapping("/list_users")
+    @GetMapping("/list-users")
     public String getAll(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);

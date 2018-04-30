@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta content="text/html; charset=UTF-8">
-    <title>All manufacturers</title>
+    <title>Products</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -17,17 +17,20 @@
 
 <body>
 <div class="wrapper">
+    <%@include file="/WEB-INF/jsp/secure/authHeader.jsp" %>
     <div class="container">
+        <h3 class="page-title">List of all products</h3>
         <div class="block block-table">
-            <h4>List of all products</h4>
             <div class="table-container">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Cost</th>
-                        <th>Manufacturer</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">Manufacturer</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="product" items="${products}">
@@ -35,12 +38,17 @@
                             <td><c:out value="${product.name}"/></td>
                             <td><c:out value="${product.cost}"/></td>
                             <td><c:out value="${product.manufacturer.name}"/></td>
-                            <td><a href="${contextPath}/">Delete</a></td>
+                            <td><a href="${contextPath}/edit-product-${product.id}">Edit</a></td>
+                            <td><a href="${contextPath}/delete-product-${product.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="btn-block">
+            <a href="${contextPath}/new-product" class="btn btn-g">Add product</a>
+            <a href="${contextPath}/" class="btn btn-r">Back</a>
         </div>
     </div>
 </div>

@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-g" value="Save"/>
-                        <a href="${contextPath}/list_manufacturers" class="btn btn-r">Cancel</a>
+                        <a href="${contextPath}/list-manufacturers" class="btn btn-r">Cancel</a>
                     </div>
                 </form:form>
             </div>

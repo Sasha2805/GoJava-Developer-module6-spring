@@ -38,20 +38,20 @@
                 <div class="row">
                     <div class="col-sm-3 action">
                         <h3>Manufacturer</h3>
-                        <p><a href="${contextPath}/list_manufacturers">List manufacturers</a></p>
+                        <p><a href="${contextPath}/list-manufacturers">List manufacturers</a></p>
                     </div>
                     <div class="col-sm-3 action">
                         <h3>Product</h3>
-                        <p><a href="${contextPath}/list_projects">List products</a></p>
+                        <p><a href="${contextPath}/list-products">List products</a></p>
                     </div>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <div class="col-sm-3 action">
                             <h3>User</h3>
-                            <p><a href="${contextPath}/list_users">List users</a></p>
+                            <p><a href="${contextPath}/list-users">List users</a></p>
                         </div>
                         <div class="col-sm-3 action">
                             <h3>Role</h3>
-                            <p><a href="${contextPath}/list_roles">List roles</a></p>
+                            <p><a href="${contextPath}/list-roles">List roles</a></p>
                         </div>
                     </sec:authorize>
                 </div>

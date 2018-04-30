@@ -20,8 +20,8 @@ public class Product {
     @Column(name = "cost")
     private BigDecimal cost;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manufacturer_id")
+    @ManyToOne
+    @JoinColumn(name="manufacturer_id", nullable=false)
     private Manufacturer manufacturer;
 
     public Product() {

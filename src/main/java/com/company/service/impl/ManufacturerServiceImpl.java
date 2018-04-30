@@ -35,7 +35,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public void update(Manufacturer manufacturer) {
-        manufacturerRepository.save(manufacturer);
+        manufacturerRepository.saveAndFlush(manufacturer);
     }
 
     @Override

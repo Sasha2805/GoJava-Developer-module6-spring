@@ -40,7 +40,7 @@
                     <button type="submit" class="btn btn-r">Log in</button>
                 </form>
             </div>
-        </div>
+         </div>
     </div>
 </div>
 </body>

@@ -5,7 +5,6 @@ import com.company.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
@@ -27,20 +26,24 @@ public class ProductValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Product product = (Product) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "Required");
-        Matcher matcher = patternForName.matcher(product.getName());
-        if (!matcher.matches()) {
-            errors.rejectValue("name", "Name.isn't.correct");
-        }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cost", "Required");
-        if (product.getCost() instanceof BigDecimal) {
-            if (!isBetween(product.getCost(), BigDecimal.valueOf(0), BigDecimal.valueOf(1000000))) {
-                errors.rejectValue("price", "typeMismatch.price");
+        if (product.getName().isEmpty()){
+            errors.rejectValue("name", "Required");
+        } else {
+            Matcher matcher = patternForName.matcher(product.getName());
+            if (!matcher.matches()) {
+                errors.rejectValue("name", "Product.name.isn't.correct");
             }
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "manufacturer", "Product.manufacturer.isn't.select");
+        if (product.getCost() == null){
+            errors.rejectValue("cost", "Required");
+        } else {
+            if (product.getCost() instanceof BigDecimal) {
+                if (!isBetween(product.getCost(), BigDecimal.valueOf(0), BigDecimal.valueOf(1000000))) {
+                    errors.rejectValue("cost", "typeMismatch.cost");
+                }
+            }
+        }
     }
 
     public void isNameDuplicate(Product product, Errors errors) {
@@ -49,7 +52,7 @@ public class ProductValidator implements Validator {
         }
     }
 
-    public boolean isBetween(BigDecimal price, BigDecimal start, BigDecimal end) {
-        return (price.compareTo(start) > 0) && (price.compareTo(end) < 0);
+    public boolean isBetween(BigDecimal cost, BigDecimal start, BigDecimal end) {
+        return (cost.compareTo(start) > 0) && (cost.compareTo(end) < 0);
     }
 }

@@ -1,7 +1,6 @@
 package com.company.controller;
 
 import com.company.model.Manufacturer;
-import com.company.model.Product;
 import com.company.service.impl.ManufacturerServiceImpl;
 import com.company.service.impl.ProductServiceImpl;
 import com.company.validator.ManufacturerValidator;
@@ -28,7 +27,7 @@ public class ManufacturerController {
     @Autowired
     private ProductServiceImpl productService;
 
-    @GetMapping("/list_manufacturers")
+    @GetMapping("/list-manufacturers")
     private String getAll(Model model) {
         List<Manufacturer> manufacturers = manufacturerService.findAll();
         model.addAttribute("manufacturers", manufacturers);
@@ -50,33 +49,33 @@ public class ManufacturerController {
 
     @GetMapping("/edit-manufacturer-{id}")
     private String edit(@PathVariable String id, Model model) {
-        return addDataToManufacturerForm(model, manufacturerService.findById(UUID.fromString(id)));
+        Manufacturer manufacturer = manufacturerService.findById(UUID.fromString(id));
+        return addDataToManufacturerForm(model, manufacturer);
     }
 
     @PostMapping("/edit-manufacturer-{id}")
-    private String saveEdit(@ModelAttribute("manufacturer") @Valid Manufacturer manufacturer,
-                                        BindingResult result, Model model) {
+    private String saveEdit(@ModelAttribute("manufacturer") @Valid Manufacturer manufacturer, BindingResult result, Model model) {
         return getInfo(manufacturer, result, model, true);
     }
 
     @GetMapping("/delete-manufacturer-{id}")
     public String delete(@PathVariable String id) {
         manufacturerService.deleteById(UUID.fromString(id));
-        return "redirect:/list_manufacturers";
+        return "redirect:/list-manufacturers";
     }
 
     @GetMapping("/manufacturer-products-{id}")
-    public String getProjects(@PathVariable String id, Model model) {
+    public String getProducts(@PathVariable String id, Model model) {
         Manufacturer manufacturer = manufacturerService.findById(UUID.fromString(id));
-        model.addAttribute("products", manufacturer.getProducts());
+        model.addAttribute("manufacturer", manufacturer);
         model.addAttribute("loggedUser", MainController.getPrincipal());
         return "manufacturer/manufacturerProducts";
     }
 
-    @GetMapping("/delete-manufacturer-product-{id}")
-    public String deleteProduct(@PathVariable String id) {
-        productService.deleteById(UUID.fromString(id));
-        return "redirect:/list_manufacturers";
+    @GetMapping("/delete-product-{manufacturerId}/{productId}")
+    public String deleteProduct(@PathVariable String manufacturerId, @PathVariable String productId, Model model) {
+        productService.deleteById(UUID.fromString(productId));
+        return getProducts(manufacturerId, model);
     }
 
     private String addDataToManufacturerForm(Model model, Manufacturer manufacturer) {
@@ -85,8 +84,7 @@ public class ManufacturerController {
         return "manufacturer/manufacturer";
     }
 
-    private String getInfo(@ModelAttribute("manufacturer") Manufacturer manufacturer,
-                           BindingResult result, Model model, boolean edit) {
+    private String getInfo(@ModelAttribute("manufacturer") Manufacturer manufacturer, BindingResult result, Model model, boolean edit) {
         manufacturerValidator.validate(manufacturer, result);
 
         if (!edit) {

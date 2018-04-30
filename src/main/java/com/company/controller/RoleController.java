@@ -18,7 +18,7 @@ public class RoleController {
     @Autowired
     private RoleServiceImpl roleService;
 
-    @GetMapping("/list_roles")
+    @GetMapping("/list-roles")
     private String getAll(Model model) {
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);

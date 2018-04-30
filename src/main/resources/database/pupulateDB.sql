@@ -25,12 +25,12 @@ INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALU
 INSERT INTO `spring_hw`.`product` (`id`, `name`, `cost`, `manufacturer_id`) VALUES (unhex(replace(uuid(), '-', '')), 'Samsung Galaxy A8 2018 32GB Orchid Gray', 420.84, @samsung_id);
 
 # Creating new records in table role
-INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'ADMIN');
-INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'USER');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'ROLE_ADMIN');
+INSERT INTO `spring_hw`.`role` (`id`, `name`) VALUES (unhex(replace(uuid(), '-', '')), 'ROLE_USER');
 
 # Getting roles id
-SELECT @admin_id := id FROM role WHERE name = 'ADMIN';
-SELECT @user_id := id FROM role WHERE name = 'USER';
+SELECT @admin_id := id FROM role WHERE name = 'ROLE_ADMIN';
+SELECT @user_id := id FROM role WHERE name = 'ROLE_USER';
 
 # Creating new records in table user
 INSERT INTO `spring_hw`.`user` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES (unhex(replace(uuid(), '-', '')), 'johnSmith@gmail.com', 'john123', 'John', 'Smith');

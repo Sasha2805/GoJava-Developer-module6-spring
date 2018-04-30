@@ -54,20 +54,22 @@
                         <form:errors path="lastName" element="div" class="error"/>
                     </div>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <form:label path="roles" class="field-name">Roles</form:label>
-                        <select class="form-control" name="roles" size="1">
-                            <c:forEach var="role" items="${listRoles}">
-                                <option value="${role.id}"
-                                        <c:if test="${role.id == user.getRoles().iterator().next().getId()}"> selected </c:if>
-                                >${role.name}</option>
-                            </c:forEach>
-                        </select>
+                        <div class="form-group">
+                            <form:label path="roles" class="field-name">Roles</form:label>
+                            <select class="form-control" name="roles" size="1">
+                                <c:forEach var="role" items="${listRoles}">
+                                    <option value="${role.id}"
+                                            <c:if test="${role.id == user.getRoles().iterator().next().getId()}"> selected </c:if>
+                                    >${role.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
                     </sec:authorize>
                     <div class="form-group">
                         <c:choose>
                             <c:when test="${edit}">
                                 <input type="submit" class="btn btn-g" value="Update"/>
-                                <a href="${contextPath}/listUsers" class="btn btn-r">Cancel</a>
+                                <a href="${contextPath}/list-users" class="btn btn-r">Cancel</a>
                             </c:when>
                             <c:otherwise>
                                 <input type="submit" class="btn btn-g" value="Register"/>

@@ -31,11 +31,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="product" items="${products}">
+                    <c:forEach var="product" items="${manufacturer.products}">
                         <tr>
                             <td><c:out value="${product.name}"/></td>
                             <td><c:out value="${product.cost}"/></td>
-                            <td><a href="${contextPath}/delete-manufacturer-product-${product.id}">Delete</a></td>
+                            <td><a href="${contextPath}/delete-product-${manufacturer.id}/${product.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -43,7 +43,8 @@
             </div>
         </div>
         <div class="btn-block">
-            <a href="${contextPath}/" class="btn btn-g">Add product</a>
+            <a href="${contextPath}/new-product" class="btn btn-g">Add product</a>
+            <a href="${contextPath}/list-manufacturers" class="btn btn-r">Back</a>
         </div>
     </div>
 </div>

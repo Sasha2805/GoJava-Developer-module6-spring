@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta content="text/html; charset=UTF-8">
-    <title>All manufacturers</title>
+    <title>Manufacturers</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -46,6 +46,7 @@
         </div>
         <div class="btn-block">
             <a href="${contextPath}/new-manufacturer" class="btn btn-g">Add manufacturer</a>
+            <a href="${contextPath}/" class="btn btn-r">Back</a>
         </div>
     </div>
 </div>

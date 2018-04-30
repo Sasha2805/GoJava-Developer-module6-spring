@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.model.Product;
+import com.company.service.impl.ManufacturerServiceImpl;
 import com.company.service.impl.ProductServiceImpl;
 import com.company.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,14 @@ public class ProductController {
     @Autowired
     private ProductValidator productValidator;
 
-    @GetMapping("/list_products")
+    @Autowired
+    private ManufacturerServiceImpl manufacturerService;
+
+    @GetMapping("/list-products")
     private String getAll(Model model) {
         List<Product> products = productService.findAll();
         model.addAttribute("products", products);
+        model.addAttribute("loggedUser", MainController.getPrincipal());
         return "product/listProducts";
     }
 
@@ -39,7 +44,7 @@ public class ProductController {
 
     @PostMapping("/new-product")
     private String save(@ModelAttribute("product") @Valid Product product, BindingResult result, Model model) {
-        return getProductInfo(product, result, model, false);
+        return getInfo(product, result, model, false);
     }
 
     @GetMapping("/edit-product-{id}")
@@ -48,19 +53,19 @@ public class ProductController {
     }
 
     @PostMapping("/edit-product-{id}")
-    private String saveEdit(@ModelAttribute("product") @Valid Product product,
-                                   BindingResult result, Model model) {
-        return getProductInfo(product, result, model, true);
+    private String saveEdit(@ModelAttribute("product") @Valid Product product, BindingResult result, Model model) {
+        return getInfo(product, result, model, true);
     }
 
     @GetMapping("/delete-product-{id}")
     public String delete(@PathVariable String id) {
         productService.deleteById(UUID.fromString(id));
-        return "redirect:product/listProducts";
+        return "redirect:/list-products";
     }
 
-    private String getProductInfo(Product product, BindingResult result, Model model, boolean edit) {
+    private String getInfo(Product product, BindingResult result, Model model, boolean edit) {
         productValidator.validate(product, result);
+
         if (!edit) {
             productValidator.isNameDuplicate(product, result);
         }
@@ -68,14 +73,16 @@ public class ProductController {
         if (result.hasErrors()) {
             return addDataToProductForm(model, product);
         }
+
         productService.save(product);
         return getAll(model);
     }
 
     private String addDataToProductForm(Model model, Product product) {
+        model.addAttribute("manufacturers", manufacturerService.findAll());
         model.addAttribute("product", product);
         model.addAttribute("loggedUser", MainController.getPrincipal());
-        return "product";
+        return "product/product";
     }
 }
 
