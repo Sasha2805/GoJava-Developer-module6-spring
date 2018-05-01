@@ -54,12 +54,6 @@ public class RoleController {
         return getInfo(role, result, model, true);
     }
 
-    @GetMapping("/delete-role-{id}")
-    public String delete(@PathVariable String id) {
-        roleService.deleteById(UUID.fromString(id));
-        return "redirect:/list-roles";
-    }
-
     public String addDataToRoleForm(Model model, Role role, boolean edit) {
         model.addAttribute("role", role);
         model.addAttribute("edit", edit);

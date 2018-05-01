@@ -97,6 +97,14 @@ public class UserController {
         return getUserRoles(id, model);
     }
 
+    @GetMapping("/delete-user-role-{userId}/{roleId}")
+    public String deleteRole(@PathVariable String userId, @PathVariable String roleId, Model model) {
+        User user = userService.findById(UUID.fromString(userId));
+        user.getRoles().remove(roleService.findById(UUID.fromString(roleId)));
+        userService.update(user);
+        return getUserRoles(userId, model);
+    }
+
     private String addDataToRegistrationForm(Model model, User user, boolean edit) {
         model.addAttribute("user", user);
         model.addAttribute("listRoles", userService.findAllRoles());
