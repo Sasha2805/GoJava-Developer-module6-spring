@@ -30,6 +30,7 @@
                         <th scope="col">Last name</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>

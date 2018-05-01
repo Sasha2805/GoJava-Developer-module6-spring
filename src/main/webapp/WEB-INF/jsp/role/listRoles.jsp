@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta content="text/html; charset=UTF-8">
-    <title>Users</title>
+    <title>Roles</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -35,7 +35,7 @@
                         <tr>
                             <td><c:out value="${role.name}"/></td>
                             <td><a href="${contextPath}/edit-role-${role.id}">Edit</a></td>
-                            <td><a href="${contextPath}/delete-role-${user.id}">Delete</a></td>
+                            <td><a href="${contextPath}/delete-role-${role.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -44,14 +44,7 @@
         </div>
         <div class="btn-block">
             <a href="${contextPath}/new-role" class="btn btn-g">Add role</a>
-            <c:choose>
-                <c:when test="${userRoles}">
-                    <a href="${contextPath}/list-users" class="btn btn-r">Back</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${contextPath}/" class="btn btn-r">Back</a>
-                </c:otherwise>
-            </c:choose>
+            <a href="${contextPath}/" class="btn btn-r">Back</a>
         </div>
     </div>
 </div>

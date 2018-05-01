@@ -1,6 +1,8 @@
 package com.company.controller;
 
+import com.company.model.Role;
 import com.company.model.User;
+import com.company.service.RoleService;
 import com.company.service.SecurityService;
 import com.company.service.impl.UserServiceImpl;
 import com.company.validator.UserValidator;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Controller
@@ -26,6 +29,9 @@ public class UserController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping({"/registration", "/new-user"})
     public String getRegistrationForm(Model model) {
@@ -67,10 +73,28 @@ public class UserController {
     @GetMapping("/user-roles-{id}")
     public String getUserRoles(@PathVariable String id, Model model) {
         User user = userService.findById(UUID.fromString(id));
-        model.addAttribute("roles", user.getRoles());
-        model.addAttribute("userRoles", true);
+        model.addAttribute("user", user);
         model.addAttribute("loggedUser", MainController.getPrincipal());
-        return "role/listRoles";
+        return "user/userRoles";
+    }
+
+    @GetMapping("/add-role-to-user-{id}")
+    public String addRole(@PathVariable String id, Model model) {
+        Set<Role> userRoles = userService.findById(UUID.fromString(id)).getRoles();
+        List<Role> roles = roleService.findAll();
+        roles.removeAll(userRoles);
+        model.addAttribute("userId", id);
+        model.addAttribute("roles", roles);
+        model.addAttribute("loggedUser", MainController.getPrincipal());
+        return "user/addRoleToUser";
+    }
+
+    @PostMapping("/add-role-to-user-{id}")
+    public String saveRole(@ModelAttribute("role") @Valid Role role, @PathVariable String id, Model model) {
+        User user = userService.findById(UUID.fromString(id));
+        user.getRoles().add(role);
+        userService.update(user);
+        return getUserRoles(id, model);
     }
 
     private String addDataToRegistrationForm(Model model, User user, boolean edit) {
