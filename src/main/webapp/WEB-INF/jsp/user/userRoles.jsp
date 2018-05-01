@@ -27,15 +27,13 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="role" items="${user.roles}">
                         <tr>
                             <td><c:out value="${role.name}"/></td>
-                            <td><a href="${contextPath}/edit-role-${role.id}">Edit</a></td>
-                            <td><a href="${contextPath}/delete-role-${role.id}">Delete</a></td>
+                            <td><a href="${contextPath}/delete-user-role-${user.id}/${role.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
