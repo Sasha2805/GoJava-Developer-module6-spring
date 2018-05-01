@@ -54,14 +54,23 @@ public class UserController {
     }
 
     @PostMapping("/edit-user-{id}")
-    public String saveEdit(@ModelAttribute("user") User userForm, BindingResult result, Model model) {
-        return getInfo(userForm, result, model, true);
+    public String saveEdit(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+        return getInfo(user, result, model, true);
     }
 
     @GetMapping("/delete-user-{id}")
     public String deleteUser(@PathVariable String id) {
         userService.deleteById(UUID.fromString(id));
-        return "redirect:user/listUsers";
+        return "redirect:/list-users";
+    }
+
+    @GetMapping("/user-roles-{id}")
+    public String getUserRoles(@PathVariable String id, Model model) {
+        User user = userService.findById(UUID.fromString(id));
+        model.addAttribute("roles", user.getRoles());
+        model.addAttribute("userRoles", true);
+        model.addAttribute("loggedUser", MainController.getPrincipal());
+        return "role/listRoles";
     }
 
     private String addDataToRegistrationForm(Model model, User user, boolean edit) {

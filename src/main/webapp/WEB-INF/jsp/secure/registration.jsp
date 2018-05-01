@@ -35,12 +35,12 @@
                     </div>
                     <div class="form-group">
                         <form:label path="password" class="field-name">Password</form:label>
-                        <form:input type="password" path="password" id="password" class="form-control"/>
+                        <input type="password" id="password" name="password" class="form-control">
                         <form:errors path="password" element="div" class="error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="confirmPassword" class="field-name">Confirm password</form:label>
-                        <form:input type="password" path="confirmPassword" id="confirmPassword" class="form-control"/>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
                         <form:errors path="confirmPassword" element="div" class="error"/>
                     </div>
                     <div class="form-group">

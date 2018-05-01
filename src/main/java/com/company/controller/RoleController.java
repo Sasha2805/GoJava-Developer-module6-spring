@@ -22,6 +22,7 @@ public class RoleController {
     private String getAll(Model model) {
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);
+        model.addAttribute("loggedUser", MainController.getPrincipal());
         return "role/listRoles";
     }
 
@@ -38,7 +39,7 @@ public class RoleController {
     }
 
     private String addDataToRoleForm(Model model, Role role) {
-        model.addAttribute("roleForm", role);
+        model.addAttribute("role", role);
         model.addAttribute("loggedUser", MainController.getPrincipal());
         return "role";
     }
